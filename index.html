@@ -25,24 +25,26 @@ body{
   100%{background-position:0% 50%}
 }
 
-section{
-  min-height:100vh;
-  padding:24px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+section {
+  min-height: 100vh;
+  padding: 24px;
 
-  opacity:0;
-  transform:translateX(40px);
-  pointer-events:none;
-  transition:.6s ease;
+  display: none;              /* 🔥 IMPORTANT */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity .6s ease, transform .6s ease;
 }
-section.active{
-  opacity:1;
-  transform:translateX(0);
-  pointer-events:auto;
+
+section.active {
+  display: flex;              /* 🔥 ONLY ACTIVE ONE SHOWS */
+  opacity: 1;
+  transform: translateX(0);
 }
+
 
 button{
   padding:12px 24px;
