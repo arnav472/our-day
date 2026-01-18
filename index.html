@@ -296,7 +296,20 @@ function unlock(el,src,cap,isVideo=false){
     : `<img src="${src}"><p>${cap}</p><button onclick="next()">Next</button>`;
 }
 
-function hug(){ hugText.innerText="This is me holding you."; }
+function hug(){
+  hugBox.classList.add("squeeze");
+  hugText.innerText = "This is me holding you.";
+
+  if(!document.getElementById("hugNext")){
+    const btn = document.createElement("button");
+    btn.id = "hugNext";
+    btn.innerText = "Next";
+    btn.onclick = next;
+    hugText.appendChild(document.createElement("br"));
+    hugText.appendChild(btn);
+  }
+}
+
 
 const drag=document.getElementById("draggable");
 const target=document.getElementById("target");
