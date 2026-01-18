@@ -163,6 +163,9 @@
 <script>
     const PASSWORD = "KUCHIPUCHIIIII";
     let entry = prompt("What is your nickname on Instagram? 💗");
+    if (entry !== PASSWORD) {
+        document.body.innerHTML = "<h2 style='margin-top:40vh'>Wrong.</h2>";
+        throw new Error("Incorrect Password");
     }
 </script>
 
@@ -241,7 +244,7 @@
 
 <section class="memory">
     <p>Video 2</p>
-    <div class="lock" onclick="unlock(this,'PASTE_CLOUDINARY_LINK_HERE','🎥',true)">🔒</div>
+    <div class="lock" onclick="unlock(this,'v2.mp4','🎥',true)">🔒</div>
 </section>
 
 <section class="memory">
@@ -271,7 +274,7 @@
 
 <section class="memory">
     <p>Video 4</p>
-    <div class="lock" onclick="unlock(this,'PASTE_CLOUDINARY_LINK_HERE','🎥',true)">🔒</div>
+    <div class="lock" onclick="unlock(this,'v4.mp4','🎥',true)">🔒</div>
 </section>
 
 <section class="memory">
@@ -338,13 +341,12 @@
 
         if (isVideo) {
             el.parentElement.innerHTML = `
-                <p class="loading-text">Loading high quality video...</p>
                 <video src="${src}" controls playsinline webkit-playsinline preload="auto" style="width:100%; border-radius:14px;"></video>
                 <p>${cap}</p>
                 <button onclick="next()">Next</button>`;
         } else {
             el.parentElement.innerHTML = `
-                <img src="${src}" style="width:100%;">
+                <img src="${src}" style="width:100%; border-radius:14px;">
                 <p>${cap}</p>
                 <button onclick="next()">Next</button>`;
         }
