@@ -1,150 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For snowball ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For snowball ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body{
-  font-family:'Dancing Script',cursive;
-  background:linear-gradient(120deg,#fdeff4,#ffe5ec);
-  color:#333;
-  text-align:center;
-  overflow:hidden;
-}
+        body {
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(120deg, #fdeff4, #ffe5ec);
+            color: #333;
+            text-align: center;
+            overflow: hidden;
+        }
 
-/* PAGE SYSTEM */
-section{
-  position:fixed;
-  inset:0;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  padding:24px;
-  opacity:0;
-  transform:translateX(40px);
-  transition:.6s ease;
-}
-section.active{
-  display:flex;
-  opacity:1;
-  transform:translateX(0);
-}
+        /* PAGE SYSTEM */
+        section {
+            position: fixed;
+            inset: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 24px;
+            opacity: 0;
+            transform: translateX(40px);
+            transition: .6s ease;
+        }
+        section.active {
+            display: flex;
+            opacity: 1;
+            transform: translateX(0);
+        }
 
-/* BUTTONS */
-button{
-  padding:12px 24px;
-  margin-top:14px;
-  border:none;
-  border-radius:24px;
-  background:#ff8fab;
-  color:white;
-  font-size:18px;
-  cursor:pointer;
-}
+        /* BUTTONS */
+        button {
+            padding: 12px 24px;
+            margin-top: 14px;
+            border: none;
+            border-radius: 24px;
+            background: #ff8fab;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 143, 171, 0.3);
+        }
 
-/* ENVELOPE */
-#envelope{
-  width:240px;height:160px;
-  background:#ffb3c6;
-  border-radius:14px;
-  position:relative;
-  perspective:900px;
-}
-#flap{
-  position:absolute;top:0;
-  width:100%;height:80px;
-  background:#ff8fab;
-  border-radius:14px 14px 0 0;
-  transform-origin:top;
-  transition:1.2s ease;
-}
-#letter{
-  position:absolute;
-  bottom:12px;left:12px;right:12px;
-  height:110px;
-  background:white;
-  border-radius:8px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s ease;
-}
-.open #flap{transform:rotateX(-160deg)}
-.open #letter{opacity:1;transform:translateY(-30px)}
+        /* ENVELOPE */
+        #envelope {
+            width: 240px; height: 160px;
+            background: #ffb3c6;
+            border-radius: 14px;
+            position: relative;
+            perspective: 900px;
+        }
+        #flap {
+            position: absolute; top: 0;
+            width: 100%; height: 80px;
+            background: #ff8fab;
+            border-radius: 14px 14px 0 0;
+            transform-origin: top;
+            transition: 1.2s ease;
+        }
+        #letter {
+            position: absolute;
+            bottom: 12px; left: 12px; right: 12px;
+            height: 110px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s ease;
+        }
+        .open #flap { transform: rotateX(-160deg); }
+        .open #letter { opacity: 1; transform: translateY(-30px); }
 
-/* MEMORY */
-.memory{
-  border:2px dashed #ffb3c6;
-  padding:20px;
-  border-radius:16px;
-}
-.memory img,
-.memory video{
-  max-width:90%;
-  border-radius:14px;
-  margin-top:12px;
-}
-.lock{
-  font-size:42px;
-  cursor:pointer;
-}
+        /* MEMORY BOXES */
+        .memory {
+            border: 2px dashed #ffb3c6;
+            padding: 20px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 400px;
+        }
+        .memory img,
+        .memory video {
+            max-width: 100%;
+            border-radius: 14px;
+            margin-top: 12px;
+            background: #000;
+        }
+        .lock {
+            font-size: 42px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .lock:active { transform: scale(0.9); }
 
-/* HEART GAME */
-#alignArea{position:relative;height:200px;width:100%}
-.align-heart{position:absolute;font-size:40px}
-#target{top:80px;left:50%;transform:translateX(-50%)}
-#draggable{top:20px;left:20px}
+        /* HEART GAME */
+        #alignArea { position: relative; height: 200px; width: 100%; }
+        .align-heart { position: absolute; font-size: 40px; }
+        #target { top: 80px; left: 50%; transform: translateX(-50%); }
+        #draggable { top: 20px; left: 20px; touch-action: none; }
 
-/* FIND ME */
-.dot{
-  width:20px;height:20px;
-  background:#ffb3c6;
-  border-radius:50%;
-  position:absolute;
-}
+        /* FIND ME DOTS */
+        .dot {
+            width: 20px; height: 20px;
+            background: #ffb3c6;
+            border-radius: 50%;
+            position: absolute;
+        }
 
-/* MUSIC */
-#musicBtn{
-  position:fixed;
-  top:16px;right:16px;
-  width:44px;height:44px;
-  border-radius:50%;
-  background:#ff8fab;
-  color:white;
-  z-index:20;
-}
+        /* MUSIC CONTROL */
+        #musicBtn {
+            position: fixed;
+            top: 16px; right: 16px;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: #ff8fab;
+            color: white;
+            z-index: 20;
+            border: none;
+        }
 
-/* END */
-#curtains{position:fixed;inset:0;display:none;z-index:10}
-.curtain{position:absolute;width:50%;height:100%;background:#222}
-#leftCurtain{left:-50%}
-#rightCurtain{right:-50%}
-.closeLeft{animation:l 1.2s forwards}
-.closeRight{animation:r 1.2s forwards}
-@keyframes l{to{left:0}}
-@keyframes r{to{right:0}}
+        /* ENDING CURTAINS */
+        #curtains { position: fixed; inset: 0; display: none; z-index: 10; }
+        .curtain { position: absolute; width: 50%; height: 100%; background: #222; }
+        #leftCurtain { left: -50%; }
+        #rightCurtain { right: -50%; }
+        .closeLeft { animation: l 1.2s forwards; }
+        .closeRight { animation: r 1.2s forwards; }
+        @keyframes l { to { left: 0; } }
+        @keyframes r { to { right: 0; } }
 
-#finalText{
-  position:fixed;inset:0;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  color:white;
-  font-size:28px;
-  z-index:20;
-  animation:fade 1.2s forwards;
-}
-@keyframes fade{from{opacity:0}to{opacity:1}}
-</style>
+        #finalText {
+            position: fixed; inset: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 28px;
+            z-index: 20;
+            animation: fade 1.2s forwards;
+        }
+        @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+        .loading-text { font-size: 14px; color: #ff8fab; margin-top: 5px; }
+    </style>
 </head>
 
 <body>
@@ -152,284 +161,249 @@ button{
 <button id="musicBtn">🎵</button>
 
 <script>
-const PASSWORD="KUCHIPUCHIIIII";
-if(prompt("What is your nickname on Instagram? 💗")!==PASSWORD){
-  document.body.innerHTML="<h2 style='margin-top:40vh'>Wrong.</h2>";
-  throw new Error();
-}
+    const PASSWORD = "KUCHIPUCHIIIII";
+    let entry = prompt("What is your nickname on Instagram? 💗");
+    if (entry !== PASSWORD) {
+        document.body.innerHTML = "<h2 style='margin-top:40vh'>Wrong.</h2>";
+        throw new Error("Password Incorrect");
+    }
 </script>
 
 <audio id="bgm" loop>
-  <source src="music.mp3">
+    <source src="music.mp3">
 </audio>
 
-<!-- 1 -->
 <section class="active">
-  <div id="envelope">
-    <div id="flap"></div>
-    <div id="letter">for you 💌</div>
-  </div>
-  <button onclick="openEnvelope()">Open</button>
+    <div id="envelope">
+        <div id="flap"></div>
+        <div id="letter">for you 💌</div>
+    </div>
+    <button onclick="openEnvelope()">Open</button>
 </section>
 
-<!-- 2 -->
 <section>
-  <p>hii meri cutu</p>
-  <button onclick="next()">Next</button>
+    <p>hii meri cutu</p>
+    <button onclick="next()">Next</button>
 </section>
 
-<!-- 3 -->
 <section>
-  <button onclick="mood('That makes me smile.')">Happy</button>
-  <button onclick="mood('Dabochlu??')">Tired</button>
-  <button onclick="mood('I miss you too.')">Missing you</button>
-  <p id="reply"></p>
+    <p>How are you today?</p>
+    <button onclick="mood('That makes me smile.')">Happy</button>
+    <button onclick="mood('Dabochlu??')">Tired</button>
+    <button onclick="mood('I miss you too.')">Missing you</button>
+    <p id="reply" style="margin-top: 20px;"></p>
 </section>
 
-<!-- 4 -->
 <section class="memory">
-  <p>Memory 1</p>
-  <div class="lock" onclick="unlock(this,'p1.jpg','🩷')">🔒</div>
+    <p>Memory 1</p>
+    <div class="lock" onclick="unlock(this,'p1.jpg','🩷')">🔒</div>
 </section>
 
-<!-- 5 -->
 <section class="memory">
-  <p>Memory 2</p>
-  <div class="lock" onclick="unlock(this,'p2.jpg','🩷')">🔒</div>
+    <p>Memory 2</p>
+    <div class="lock" onclick="unlock(this,'p2.jpg','🩷')">🔒</div>
 </section>
 
-<!-- 6 -->
 <section>
-  <button onclick="hug()">Hug me</button>
-  <p id="hugText"></p>
+    <button onclick="hug()">Hug me</button>
+    <p id="hugText" style="margin-top: 20px;"></p>
 </section>
 
-<!-- 7 -->
-/* Find these lines in your HTML and swap the filenames for your new links */
 <section class="memory">
-  <p>Video 1</p>
-  <div class="lock" onclick="unlock(this,'https://player.cloudinary.com/embed/?cloud_name=dpzoaq2ds&public_id=v1.mp4_pdtmzu','🎥',true)">🔒</div>
+    <p>Our Video 1</p>
+    <div class="lock" onclick="unlock(this,'https://res.cloudinary.com/dpzoaq2ds/video/upload/v1.mp4_pdtmzu.mp4','🎥',true)">🔒</div>
 </section>
 
-<!-- 8 -->
 <section>
-  <p>Bring us together</p>
-  <div id="alignArea">
-    <div id="target" class="align-heart">❤️</div>
-    <div id="draggable" class="align-heart">❤️</div>
-  </div>
-  <p id="alignText"></p>
+    <p>Bring us together</p>
+    <div id="alignArea">
+        <div id="target" class="align-heart">❤️</div>
+        <div id="draggable" class="align-heart">❤️</div>
+    </div>
+    <p id="alignText"></p>
 </section>
 
-<!-- 9 -->
 <section class="memory">
-  <p>Memory 3</p>
-  <div class="lock" onclick="unlock(this,'p3.jpg','🩷')">🔒</div>
+    <p>Memory 3</p>
+    <div class="lock" onclick="unlock(this,'p3.jpg','🩷')">🔒</div>
 </section>
 
-<!-- 10 -->
 <section class="memory">
-  <p>Memory 4</p>
-  <div class="lock" onclick="unlock(this,'p4.jpg','🩷')">🔒</div>
+    <p>Memory 4</p>
+    <div class="lock" onclick="unlock(this,'p4.jpg','🩷')">🔒</div>
 </section>
 
-<!-- 11 -->
 <section id="findme">
-  <p>Find me</p>
+    <p>Find the hidden hearts</p>
 </section>
 
-<!-- 12 -->
 <section class="memory">
-  <p>Memory 5</p>
-  <div class="lock" onclick="unlock(this,'p5.jpg','🩷')">🔒</div>
+    <p>Memory 5</p>
+    <div class="lock" onclick="unlock(this,'p5.jpg','🩷')">🔒</div>
 </section>
 
-<!-- 13 -->
 <section class="memory">
-  <p>Video 2</p>
-  <div class="lock" onclick="unlock(this,'v2.mp4','🎥',true)">🔒</div>
+    <p>Video 2</p>
+    <div class="lock" onclick="unlock(this,'PASTE_CLOUDINARY_LINK_HERE','🎥',true)">🔒</div>
 </section>
 
-<!-- 14 -->
 <section class="memory">
-  <p>Memory 6</p>
-  <div class="lock" onclick="unlock(this,'p6.jpg','🩷')">🔒</div>
+    <p>Memory 6</p>
+    <div class="lock" onclick="unlock(this,'p6.jpg','🩷')">🔒</div>
 </section>
 
-<!-- 15 -->
 <section class="memory">
-  <p>Memory 7</p>
-  <div class="lock" onclick="unlock(this,'p7.jpg','🩷')">🔒</div>
+    <p>Memory 7</p>
+    <div class="lock" onclick="unlock(this,'p7.jpg','🩷')">🔒</div>
 </section>
 
-<!-- 16 -->
-/* Find these lines in your HTML and swap the filenames for your new links */
 <section class="memory">
-  <p>Video 3</p>
-  <div class="lock" onclick="unlock(this,'https://res.cloudinary.com/dpzoaq2ds/video/upload/v1768740076/v3.mp4_jurgrh.mp4','🎥',true)">🔒</div>
+    <p>Video 3</p>
+    <div class="lock" onclick="unlock(this,'https://res.cloudinary.com/dpzoaq2ds/video/upload/v1768740076/v3.mp4_jurgrh.mp4','🎥',true)">🔒</div>
 </section>
 
-<!-- 17 -->
 <section class="memory">
-  <p>Memory 8</p>
-  <div class="lock" onclick="unlock(this,'p8.jpg','🩷')">🔒</div>
+    <p>Memory 8</p>
+    <div class="lock" onclick="unlock(this,'p8.jpg','🩷')">🔒</div>
 </section>
 
-<!-- 18 -->
 <section class="memory">
-  <p>Memory 9</p>
-  <div class="lock" onclick="unlock(this,'p9.jpg','🩷')">🔒</div>
+    <p>Memory 9</p>
+    <div class="lock" onclick="unlock(this,'p9.jpg','🩷')">🔒</div>
 </section>
 
-<!-- 19 -->
 <section class="memory">
-  <p>Video 4</p>
-  <div class="lock" onclick="unlock(this,'v4.mp4','🎥',true)">🔒</div>
+    <p>Video 4</p>
+    <div class="lock" onclick="unlock(this,'PASTE_CLOUDINARY_LINK_HERE','🎥',true)">🔒</div>
 </section>
 
-<!-- 20 -->
 <section class="memory">
-  <p>Last memory</p>
-  <div class="lock" onclick="finalUnlock(this,'p10.jpg','Always you')">🔒</div>
+    <p>Final Memory</p>
+    <div class="lock" onclick="finalUnlock(this,'p10.jpg','Always you')">🔒</div>
 </section>
 
 <div id="curtains">
-  <div id="leftCurtain" class="curtain"></div>
-  <div id="rightCurtain" class="curtain"></div>
+    <div id="leftCurtain" class="curtain"></div>
+    <div id="rightCurtain" class="curtain"></div>
 </div>
 
 <div id="finalText">
-  <p>I love you, snowball 🤍</p>
+    <p>I love you, snowball 🤍</p>
 </div>
 
 <script>
-const sections=document.querySelectorAll("section");
-const envelope=document.getElementById("envelope");
-const bgm=document.getElementById("bgm");
-const reply=document.getElementById("reply");
-const hugText=document.getElementById("hugText");
-const alignText=document.getElementById("alignText");
-const findme=document.getElementById("findme");
-const curtains=document.getElementById("curtains");
-const leftCurtain=document.getElementById("leftCurtain");
-const rightCurtain=document.getElementById("rightCurtain");
-const finalText=document.getElementById("finalText");
-const musicBtn=document.getElementById("musicBtn");
+    const sections = document.querySelectorAll("section");
+    const envelope = document.getElementById("envelope");
+    const bgm = document.getElementById("bgm");
+    const reply = document.getElementById("reply");
+    const hugText = document.getElementById("hugText");
+    const alignText = document.getElementById("alignText");
+    const findme = document.getElementById("findme");
+    const curtains = document.getElementById("curtains");
+    const leftCurtain = document.getElementById("leftCurtain");
+    const rightCurtain = document.getElementById("rightCurtain");
+    const finalText = document.getElementById("finalText");
+    const musicBtn = document.getElementById("musicBtn");
 
-let i=0, dragging=false, heartDone=false;
+    let i = 0, heartDone = false;
 
-function show(n){
-  sections.forEach(s=>s.classList.remove("active"));
-  sections[n].classList.add("active");
-}
-function next(){ if(i<sections.length-1) show(++i); }
-
-function openEnvelope(){
-  envelope.classList.add("open");
-  bgm.play().catch(()=>{});
-  setTimeout(()=>{
-    const b=document.createElement("button");
-    b.innerText="Next";
-    b.onclick=next;
-    envelope.parentElement.appendChild(b);
-  },1300);
-}
-
-function mood(t){
-  reply.innerText=t;
-  const b=document.createElement("button");
-  b.innerText="Next";b.onclick=next;
-  reply.appendChild(document.createElement("br"));
-  reply.appendChild(b);
-}
-
-function unlock(el, src, cap, isVideo = false) {
-  el.dataset.t = (+el.dataset.t || 0) + 1;
-  
-  // Only unlock after 3 clicks
-  if (el.dataset.t < 3) return;
-
-  if (isVideo) {
-    el.parentElement.innerHTML = `
-      <video 
-        src="${src}" 
-        controls 
-        playsinline 
-        preload="auto" 
-        style="width:90%; border-radius:14px; margin-top:12px;">
-      </video>
-      <p>${cap}</p>
-      <button onclick="next()">Next</button>`;
-  } else {
-    el.parentElement.innerHTML = `
-      <img src="${src}" style="max-width:90%; border-radius:14px; margin-top:12px;">
-      <p>${cap}</p>
-      <button onclick="next()">Next</button>`;
-  }
-}
-
-function hug(){
-  hugText.innerText="This is me holding you.";
-  const b=document.createElement("button");
-  b.innerText="Next";b.onclick=next;
-  hugText.appendChild(document.createElement("br"));
-  hugText.appendChild(b);
-}
-
-const drag=document.getElementById("draggable");
-const target=document.getElementById("target");
-
-function checkHeart(){
-  if(heartDone) return;
-  if(Math.abs(drag.offsetLeft-target.offsetLeft)<30 &&
-     Math.abs(drag.offsetTop-target.offsetTop)<30){
-    heartDone=true;
-    alignText.innerText="We always find our way back.";
-    const b=document.createElement("button");
-    b.innerText="Next";b.onclick=next;
-    alignText.appendChild(document.createElement("br"));
-    alignText.appendChild(b);
-  }
-}
-
-drag.addEventListener("touchmove",e=>{
-  const t=e.touches[0];
-  drag.style.left=t.clientX-20+"px";
-  drag.style.top=t.clientY-20+"px";
-  checkHeart();
-});
-
-let taps=0;
-for(let j=0;j<10;j++){
-  const d=document.createElement("div");
-  d.className="dot";
-  d.style.left=Math.random()*80+"%";
-  d.style.top=Math.random()*60+30+"%";
-  d.onclick=()=>{
-    taps++; d.style.opacity=0;
-    if(taps===4){
-      const b=document.createElement("button");
-      b.innerText="Next";b.onclick=next;
-      findme.appendChild(b);
+    function show(n) {
+        sections.forEach(s => s.classList.remove("active"));
+        sections[n].classList.add("active");
     }
-  };
-  findme.appendChild(d);
-}
 
-function finalUnlock(el,src,cap){
-  el.dataset.t=(+el.dataset.t||0)+1;
-  if(el.dataset.t<3) return;
-  el.parentElement.innerHTML=`<img src="${src}"><p>${cap}</p><button onclick="finish()">Finish</button>`;
-}
+    function next() { if (i < sections.length - 1) show(++i); }
 
-function finish(){
-  curtains.style.display="block";
-  leftCurtain.classList.add("closeLeft");
-  rightCurtain.classList.add("closeRight");
-  setTimeout(()=>finalText.style.display="flex",1200);
-}
+    function openEnvelope() {
+        envelope.classList.add("open");
+        bgm.play().catch(() => { });
+        setTimeout(() => {
+            const b = document.createElement("button");
+            b.innerText = "Next";
+            b.onclick = next;
+            envelope.parentElement.appendChild(b);
+        }, 1300);
+    }
 
-musicBtn.onclick=()=>{ bgm.paused?bgm.play():bgm.pause(); };
+    function mood(t) {
+        reply.innerHTML = `${t}<br><button onclick="next()">Next</button>`;
+    }
+
+    function unlock(el, src, cap, isVideo = false) {
+        let count = parseInt(el.dataset.t) || 0;
+        count++;
+        el.dataset.t = count;
+
+        if (count < 3) {
+            el.style.transform = `scale(${1 + count * 0.1})`;
+            return;
+        }
+
+        if (isVideo) {
+            el.parentElement.innerHTML = `
+                <p class="loading-text">Loading high quality video...</p>
+                <video src="${src}" controls playsinline webkit-playsinline preload="auto" style="width:100%; border-radius:14px;"></video>
+                <p>${cap}</p>
+                <button onclick="next()">Next</button>`;
+        } else {
+            el.parentElement.innerHTML = `
+                <img src="${src}" style="width:100%;">
+                <p>${cap}</p>
+                <button onclick="next()">Next</button>`;
+        }
+    }
+
+    function hug() {
+        hugText.innerHTML = `This is me holding you.<br><button onclick="next()">Next</button>`;
+    }
+
+    const drag = document.getElementById("draggable");
+    const target = document.getElementById("target");
+
+    drag.addEventListener("touchmove", e => {
+        const t = e.touches[0];
+        drag.style.left = t.clientX - 20 + "px";
+        drag.style.top = t.clientY - 20 + "px";
+
+        if (!heartDone && Math.abs(drag.offsetLeft - target.offsetLeft) < 40 && Math.abs(drag.offsetTop - target.offsetTop) < 40) {
+            heartDone = true;
+            alignText.innerHTML = `We always find our way back.<br><button onclick="next()">Next</button>`;
+        }
+    });
+
+    let taps = 0;
+    for (let j = 0; j < 10; j++) {
+        const d = document.createElement("div");
+        d.className = "dot";
+        d.style.left = Math.random() * 80 + "%";
+        d.style.top = Math.random() * 60 + 20 + "%";
+        d.onclick = () => {
+            taps++; d.style.opacity = 0;
+            if (taps === 4) {
+                const b = document.createElement("button");
+                b.innerText = "Next"; b.onclick = next;
+                findme.appendChild(b);
+            }
+        };
+        findme.appendChild(d);
+    }
+
+    function finalUnlock(el, src, cap) {
+        let count = parseInt(el.dataset.t) || 0;
+        count++;
+        el.dataset.t = count;
+        if (count < 3) return;
+        el.parentElement.innerHTML = `<img src="${src}" style="width:100%;"><p>${cap}</p><button onclick="finish()">Finish</button>`;
+    }
+
+    function finish() {
+        curtains.style.display = "block";
+        leftCurtain.classList.add("closeLeft");
+        rightCurtain.classList.add("closeRight");
+        setTimeout(() => finalText.style.display = "flex", 1200);
+    }
+
+    musicBtn.onclick = () => { bgm.paused ? bgm.play() : bgm.pause(); };
 </script>
 
 </body>
