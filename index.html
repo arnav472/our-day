@@ -1,0 +1,159 @@
+<script>
+/* =====================
+   SAFE DOM REFERENCES
+===================== */
+const sections = document.querySelectorAll("section");
+const envelope = document.getElementById("envelope");
+const bgm = document.getElementById("bgm");
+const reply = document.getElementById("reply");
+const hugBox = document.getElementById("hugBox");
+const hugText = document.getElementById("hugText");
+const alignText = document.getElementById("alignText");
+const findme = document.getElementById("findme");
+const curtains = document.getElementById("curtains");
+const leftCurtain = document.getElementById("leftCurtain");
+const rightCurtain = document.getElementById("rightCurtain");
+const finalText = document.getElementById("finalText");
+const musicBtn = document.getElementById("musicBtn");
+
+/* =====================
+   SECTION NAVIGATION
+===================== */
+let index = 0;
+
+function show(i) {
+  if (i < 0 || i >= sections.length) return;
+  sections.forEach(s => s.classList.remove("active"));
+  sections[i].classList.add("active");
+}
+
+function next() {
+  if (index < sections.length - 1) {
+    index++;
+    show(index);
+  }
+}
+
+/* =====================
+   ENVELOPE
+===================== */
+function openEnvelope() {
+  envelope.classList.add("open");
+  bgm.play().catch(() => {});
+  setTimeout(next, 900);
+}
+
+/* =====================
+   RESPONSES
+===================== */
+function respond(text) {
+  reply.innerText = text;
+  setTimeout(next, 1200);
+}
+
+/* =====================
+   MEMORY UNLOCK
+===================== */
+function unlock(btn, img) {
+  btn.parentElement.innerHTML = `<img src="${img}" alt="memory">`;
+  setTimeout(next, 1200);
+}
+
+/* =====================
+   HUG
+===================== */
+function hug() {
+  hugBox.classList.add("squeeze");
+  hugText.innerText = "Imagine this is me holding you.";
+  setTimeout(next, 1200);
+}
+
+/* =====================
+   HEART ALIGN (TOUCH + MOUSE)
+===================== */
+const drag = document.getElementById("draggable");
+const target = document.getElementById("target");
+
+let dragging = false;
+
+function moveHeart(x, y) {
+  drag.style.left = x - 20 + "px";
+  drag.style.top = y - 20 + "px";
+
+  const dx = drag.offsetLeft - target.offsetLeft;
+  const dy = drag.offsetTop - target.offsetTop;
+
+  if (Math.abs(dx) < 30 && Math.abs(dy) < 30) {
+    alignText.innerText = "See? We always find our way back.";
+    dragging = false;
+    setTimeout(next, 1500);
+  }
+}
+
+/* Touch */
+drag.addEventListener("touchmove", e => {
+  const t = e.touches[0];
+  moveHeart(t.clientX, t.clientY);
+});
+
+/* Mouse (desktop) */
+drag.addEventListener("mousedown", () => dragging = true);
+document.addEventListener("mousemove", e => {
+  if (dragging) moveHeart(e.clientX, e.clientY);
+});
+document.addEventListener("mouseup", () => dragging = false);
+
+/* =====================
+   FIND ME GAME
+===================== */
+let taps = 0;
+
+for (let i = 0; i < 10; i++) {
+  const d = document.createElement("div");
+  d.className = "dot";
+  d.style.left = Math.random() * 80 + "%";
+  d.style.top = Math.random() * 60 + 30 + "%";
+
+  d.onclick = () => {
+    taps++;
+    if (taps === 4) {
+      d.innerHTML = "❤️";
+      setTimeout(next, 1200);
+    } else {
+      d.style.opacity = 0;
+    }
+  };
+
+  findme.appendChild(d);
+}
+
+/* =====================
+   FINAL
+===================== */
+function finalUnlock(btn, img) {
+  btn.parentElement.innerHTML = `<img src="${img}" alt="final memory">`;
+
+  setTimeout(() => {
+    curtains.style.display = "block";
+    leftCurtain.classList.add("closeLeft");
+    rightCurtain.classList.add("closeRight");
+
+    setTimeout(() => {
+      finalText.style.display = "flex";
+    }, 1200);
+  }, 1500);
+}
+
+/* =====================
+   MUSIC TOGGLE
+===================== */
+musicBtn.onclick = () => {
+  if (bgm.paused) {
+    bgm.play();
+    musicBtn.textContent = "🎵";
+  } else {
+    bgm.pause();
+    musicBtn.textContent = "🔇";
+  }
+};
+</script>
