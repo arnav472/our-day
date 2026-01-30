@@ -108,7 +108,6 @@ button:active{transform:scale(.95)}
 }
 .lock{font-size:44px;cursor:pointer}
 
-/* FIND HEART GAME */
 .dot{
     width:18px;height:18px;
     background:#ff8fab;
@@ -129,7 +128,6 @@ button:active{transform:scale(.95)}
     to{transform:scale(1)}
 }
 
-/* CURTAINS */
 #curtains{position:fixed;inset:0;display:none;z-index:40}
 .curtain{position:absolute;width:50%;height:100%;background:#111}
 #left{left:-50%}
@@ -162,7 +160,7 @@ button:active{transform:scale(.95)}
   <source src="https://res.cloudinary.com/dpzoaq2ds/video/upload/v1768814816/music_qimbs8.mp3" type="audio/mpeg">
 </audio>
 
-<audio id="heartBeat" preload="auto">
+<audio id="heartBeat">
   <source src="https://res.cloudinary.com/dpzoaq2ds/video/upload/v1700000000/heartbeat.mp3" type="audio/mpeg">
 </audio>
 
@@ -187,30 +185,37 @@ button:active{transform:scale(.95)}
   </div>
 </section>
 
-<section class="memory">
-  <p>START</p>
-  <div class="lock" onclick="unlock(this,'p1.jpg','kitna pyaar krte h na ye dono?')">🔒</div>
-</section>
+<!-- p1 to p10 -->
+<section class="memory"><p>Memory</p><div class="lock" onclick="unlock(this,'p1.jpg','🤍')">🔒</div></section>
+<section class="memory"><p>Memory</p><div class="lock" onclick="unlock(this,'p2.jpg','🤍')">🔒</div></section>
+<section class="memory"><p>Memory</p><div class="lock" onclick="unlock(this,'p3.jpg','🤍')">🔒</div></section>
 
-<section class="memory">
-  <p>Volume up</p>
-  <div class="lock" onclick="unlock(this,
-    'https://res.cloudinary.com/dpzoaq2ds/video/upload/v1768740056/v1.mp4_pdtmzu.mp4',
-    '😭🫶🏻',
-    true)">🔒</div>
-</section>
+<section class="memory"><p>Volume up</p>
+<div class="lock" onclick="unlock(this,'https://res.cloudinary.com/dpzoaq2ds/video/upload/v1768740056/v1.mp4_pdtmzu.mp4','😭🫶🏻',true)">🔒</div></section>
+
+<section class="memory"><p>Memory</p><div class="lock" onclick="unlock(this,'p4.jpg','🤍')">🔒</div></section>
+<section class="memory"><p>Memory</p><div class="lock" onclick="unlock(this,'p5.jpg','🤍')">🔒</div></section>
+
+<section class="memory"><p>Another moment</p>
+<div class="lock" onclick="unlock(this,'v2.mp4','🤍',true)">🔒</div></section>
 
 <section id="findme">
   <p>Find the hearts</p>
 </section>
 
-<section class="memory">
-  <p>Only you</p>
-  <div class="lock" onclick="unlock(this,
-    'https://res.cloudinary.com/dpzoaq2ds/video/upload/v1768740058/v3.mp4_z6wfj9.mp4',
-    'only you',
-    true)">🔒</div>
-</section>
+<section class="memory"><p>Memory</p><div class="lock" onclick="unlock(this,'p6.jpg','🤍')">🔒</div></section>
+<section class="memory"><p>Memory</p><div class="lock" onclick="unlock(this,'p7.jpg','🤍')">🔒</div></section>
+
+<section class="memory"><p>Only you</p>
+<div class="lock" onclick="unlock(this,'https://res.cloudinary.com/dpzoaq2ds/video/upload/v1768740058/v3.mp4_z6wfj9.mp4','only you',true)">🔒</div></section>
+
+<section class="memory"><p>Memory</p><div class="lock" onclick="unlock(this,'p8.jpg','🤍')">🔒</div></section>
+
+<section class="memory"><p>Another chapter</p>
+<div class="lock" onclick="unlock(this,'v4.mp4','🤍',true)">🔒</div></section>
+
+<section class="memory"><p>Memory</p><div class="lock" onclick="unlock(this,'p9.jpg','🤍')">🔒</div></section>
+<section class="memory"><p>Memory</p><div class="lock" onclick="unlock(this,'p10.jpg','🤍')">🔒</div></section>
 
 <section class="memory">
   <p>Last?</p>
@@ -234,12 +239,10 @@ const bgm=document.getElementById("bgm");
 const musicBtn=document.getElementById("musicBtn");
 const heartSound=document.getElementById("heartBeat");
 
-/* greeting */
 const h=new Date().getHours();
 document.getElementById("greet").innerText=
   h<12?"good morning meri cutu":h<18?"hello my favorite human":"come here, long day?";
 
-/* music toggle */
 musicBtn.onclick=()=>{
   if(bgm.paused){
     bgm.volume=.95; bgm.play(); musicBtn.classList.add("playing");
@@ -301,7 +304,6 @@ function finalUnlock(){
   },1200);
 }
 
-/* FIND HEART GAME */
 const fm=document.getElementById("findme");
 let taps=0, played=false;
 
@@ -325,7 +327,6 @@ for(let j=0;j<8;j++){
   fm.appendChild(d);
 }
 
-/* FINAL TEXT EASTER EGG */
 let secretTaps=0;
 document.getElementById("finalText").addEventListener("click",()=>{
   secretTaps++;
